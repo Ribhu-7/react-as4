@@ -1,47 +1,52 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-function Student() {
+import { store } from './Detail'
+
+const Student = () => {
+    const [student]=useContext(store)
   return (
-    <div className='Std'>
-      <Link class="addnew" to="/addstudent">Add New Student</Link>
-    <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Course</th>
-        <th scope="col">Batch</th>
-        <th scope="col">Change</th>
+    <div>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>24</td>
-        <td>MERN</td>
-        <td>October</td>
-        <td>Edit</td>
-      </tr>
-      <tr>
-      <td>Mark</td>
-        <td>25</td>
-        <td>MERN</td>
-        <td>September</td>
-        <td>Edit</td>
-      </tr>
-      <tr>
-      <td>Mike</td>
-        <td>26</td>
-        <td>MERN</td>
-        <td>November</td>
-        <td>Edit</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
+<div><Link className='addnew' to="/add-student">Add Student</Link></div>
 
-)
+<table className="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Course</th>
+      <th scope="col">Batch</th>
+      <th scope="col">Change</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+      {student.map((student)=>(<tr key={student.id}>
+
+<td>{student.Name}</td>
+<td>{student.Age}</td>
+<td>{student.Course}</td>
+<td>{student.Batch}</td>
+<td><Link to="/add-student">Edit</Link></td>
+
+</tr>
+
+
+      ))}
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+
+    </div>
+  )
 }
 
-export default Student;
+export default Student
